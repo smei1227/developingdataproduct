@@ -1,0 +1,47 @@
+---
+title: "Assignment 3"
+author: "Mei Sun"
+date: "February 5, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE,cache=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning = FALSE)
+```
+
+## Week 3 Assignment
+
+This assignment created a simplty interactive plot using plotly function. Using `mtcars` dataset, a interactive boxplot showed the relationship of mileage per gallon(`mpg`) with cyclinders(`cyl`), transmission(`am`), weight(`wt`), or horse power(`hp`). 
+
+
+## Miles per Gallon and Cylinder
+```{r, echo=FALSE, error=FALSE, warning=FALSE}
+library(plotly)
+```
+
+```{r}
+mtcars$cyl <- as.factor(mtcars$cyl)
+p1 <- plot_ly(mtcars, y = ~ mpg, color = ~cyl, type = "box") %>%
+    layout(xaxis=list(title="cylinder"))
+p1
+```
+
+## Miles per Gallon and Transmission
+```{r}
+mtcars$am <- as.factor(mtcars$am)
+p2 <- plot_ly(mtcars, y = ~ mpg, color = ~am, type = "box") %>%
+    layout(xaxis=list(title="transmission"))
+p2
+```
+
+## Miles per Gallon and Horse Power
+```{r}
+plot_ly(mtcars, y = ~ mpg, x = ~ hp, color = ~cyl, type="scatter")
+```
+
+***
+```{r,fig.cap="Miles per Gallon and Weight", fig.align='center'}
+plot_ly(mtcars, y = ~ mpg, x = ~ wt, color = ~am, type="scatter")
+```
+
+
